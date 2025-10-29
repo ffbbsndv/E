@@ -2193,8 +2193,7 @@ local Checkkey = Tabs.KeySys:AddButton({
     Title = "Check Key",
     Description = "Enter Key before pressing this button",
     Callback = function()
-        local response = KeyGuardLibrary.validatePremiumKey(key)
-        if response == trueData then
+        if key == "ItsFree" then
 			Fluent:Destroy()
 			MakeScriptHub()
 		else
@@ -2210,8 +2209,9 @@ function trial()
 end
 
 local trial = Tabs.KeySys:AddButton({
-    Title = "Trial Mode (tester vs bypasses)",
+    Title = "Trial Mode (tester vs bypass)",
     Callback = function()
 		trial()
 	end
+
 })
