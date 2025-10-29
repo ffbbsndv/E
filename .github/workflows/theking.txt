@@ -1,4 +1,15 @@
-local key = "ItsFree"
+local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
+local trueData = "004c3a16ce744d22999ab1ba0345790c"
+local falseData = "3d566138bb944acb9f6b9b7251700962"
+
+KeyGuardLibrary.Set({
+	publicToken = "e095ee88985043a08b3034ff0aae7803",
+	privateToken = "226be9e7376b4cd784ddc6bbea172c61",
+	trueData = trueData,
+	falseData = falseData,
+})
+
+local key = ""
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
@@ -2193,12 +2204,13 @@ local Checkkey = Tabs.KeySys:AddButton({
     Title = "Check Key",
     Description = "Enter Key before pressing this button",
     Callback = function()
-        if key == "ItsFree" then
+        local response = KeyGuardLibrary.validatePremiumKey(key)
+        if response == trueData then
 			Fluent:Destroy()
 			MakeScriptHub()
 		else
 			task.wait(1)
-			game:GetService("Players").LocalPlayer:Kick("Wrong Key")
+			print("Wrong Key")
 		end
 	end
 })
@@ -2215,3 +2227,4 @@ local trial = Tabs.KeySys:AddButton({
 	end
 
 })
+
